@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<!-- ----- ExeScript Options Begin -----
+ ScriptType: window,invoker
+ DestDirectory: temp
+ Icon: default
+ ----- ExeScript Options End ----- -->
+
+<head>
+	<meta charset="UTF-8">
+	<title>我的工具</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/app.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/iconfont.css" />
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+	<HTA:Application
+		applicationName="MyTools"
+		icon="favicon.ico"
+		border="thin"
+		caption="yes"
+		maximizebutton="no"
+		minimizebutton="no"
+		sysmenu="no"
+		windowstate="normal"
+	>
+	<script type="text/javascript">
+		var htaWidth=800;//hta宽度
+		var htaHeight=550;//hta高度
+		var windowHeight=window.screen.availHeight;//屏幕高度
+		var windowWidth=window.screen.availWidth;//屏幕高度
+		window.onload=function(){
+		  window.moveTo((windowWidth-htaWidth)/2,(windowHeight-htaHeight)/2);//移动hta窗体位置在屏幕剧�?
+		  window.resizeTo(htaWidth,htaHeight);//更改hta窗体大小
+		}
+	</script>
+</head>
+<body oncontextmenu="window.event.returnValue=false" onselectstart="return false">
+
+	<header class="btn-group center-block" role="group">
+	  <button type="button" class="btn btn-warning" :class="{active: moreActive}" onClick="checkPanel(this, 'more')">其它工具</button>
+	  <button type="button" class="btn btn-info" :class="{active: normalActive}" onClick="checkPanel(this, 'normal')">常用工具</button>
+	  <button type="button" class="btn btn-danger" :class="{active: downloadActive}" onClick="checkPanel(this, 'download')">下载工具</button>
+	</header>
+	<div id="app" class="container">
+		<div class="panel panel-default">
+		
+		  <div class="panel-body" v-if="showMorePanel" id="morePanel">
+			<div id='manualApp'>
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-warning disabled">开发手册：</button>
+					<button v-for='tool in manualApps' type="button" class="btn btn-default btn-manual" @click="myAppRun(tool.src)" v-text="tool.name">Left</button>
+				</div>
+			</div>
+		  	<div id="moreApp" class='myApp'>
+				<ul>
+					<li v-for="myApp in aaaApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+				<ul>
+					<li v-for="myApp in bbbApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+				<ul>
+					<li v-for="myApp in cccApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+			</div>
+		  </div>
+		  
+		  <div class="panel-body" v-if="showNormalPanel" id="normalPanel">
+			<div class="alert alert-warning" role="alert" v-if="isIE()">请在IE浏览器下运行此工�?/div>
+		  	<div id="normalApp" class='myApp'>
+			  <!--div class="">
+				<div class="input-group">
+				  <input type="text" class="form-control" placeholder="Search for..." onselectstart="return true">
+				  <span class="input-group-btn">
+					<button class="btn btn-default" id="search" type="button">搜索</button>
+				  </span>
+				</div>
+			  </div-->
+				<ul>
+					<li v-for="myApp in firstApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+				<ul>
+					<li v-for="myApp in secondApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+				<ul>
+					<li v-for="myApp in thirdApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+				<ul>
+					<li v-for="myApp in fourthApps">
+					<button type="button" class="btn btn-default" @click="myAppRun(myApp.path)" >
+						<i class="icon iconfont" :class="myApp.icon" :alt="myApp.name"></i>
+					</button>
+					<div v-text="myApp.name" class="appTitle"></div>
+					</li>
+				</ul>
+			</div>
+		  </div>
+
+		  <div class="panel-body" v-else-if="showDownloadPanel" id="downloadPanel">
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li class="active"><a href="#">开发工具：</a></li>
+			    <li v-for="tool in tools"><a :href="tool.src" v-text="tool.name" download="download"></a></li>
+			</nav>
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li class="active"><a href="#">管理工具</a></li>
+			    <li v-for="administration in administrations"><a :href="administration.src" v-text="administration.name"></a></li>
+			</nav>
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li class="active"><a href="#">聊天工具�?/a></li>
+			    <li v-for="chat in chats"><a :href="chat.src" v-text="chat.name"></a></li>
+			</nav>
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li class="active"><a href="#">浏览下载�?/a></li>
+			    <li v-for="browse in browses"><a :href="browse.src" v-text="browse.name"></a></li>
+			</nav>
+			<nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li class="active"><a href="#">其他工具�?/a></li>
+			    <li v-for="other in others"><a :href="other.src" v-text="other.name"></a></li>
+			</nav>
+			
+		  </div>
+		</div>
+		
+	</div>
+	<footer id="footer">
+	Created By <a href="http://www.ixiaozi.cn">�?�?/a>
+	</footer>
+	<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/vue.js"></script>
+	<script type="text/javascript" src="assets/js/app.js"></script>
+</body>
+</html>
