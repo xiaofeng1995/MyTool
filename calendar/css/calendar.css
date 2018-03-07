@@ -1,0 +1,151 @@
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:none; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+.calendar{
+    margin: 50px auto 0;
+    width:630px;
+    height:320px;
+    border:1px solid #eee;
+}
+
+.calendar .nav{
+    height:45px;
+    border: 1px solid #eee;
+    position: relative;
+    line-height: 45px;
+}
+.calendar .nav{
+    text-align: center;
+    padding: 0 25px;
+    position: relative;
+}
+.calendar .nav ul li{
+    float: left;
+    width: 20%;
+    margin-left: 25px;
+    cursor: pointer;
+}
+.calendar .nav .btn{
+    width: 90%;
+    position: absolute;
+    top: 0;
+}
+.calendar .nav .btn a{
+    font-size: 25px;
+    font-family: "simsun";
+    text-align: center;
+    display: block;
+    position: absolute;
+    color: #666;
+}
+.calendar .nav .btn a:hover{
+    color: #36bae8;
+}
+.next{
+    position: absolute;
+    left: 100%;
+}
+.calendar .weeks span{
+    display: block;
+    width: 88px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    text-align: center;
+    border: 1px solid #eee;
+}
+.calendar .days{
+    height: 233px;
+    width: 100%;
+}
+.calendar .days li{
+    width: 78px;
+    height: 20%;
+    padding: 5px;
+    float: left;
+    border: 1px solid #eee;
+    color: #666;
+    font-size: 12px;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+.calendar .days li span{
+    font-size: 14px;
+    font-weight: bold;
+    color: #999;
+}
+.calendar .days li p{
+    text-align: center;
+    color: #ff6f2e;
+}
+.calendar .days .unlock{
+    background: #f5f5f5;
+}
+.on{
+    cursor: pointer;
+}
+.calendar .days .lock{
+    background: #fff;
+}
+
+.ui-box {
+    text-decoration:none;
+    border:none;
+    font-family:'Roboto', sans-serif;
+    position:relative;
+    vertical-align:baseline;
+}
+.title:before,.title:after,.title>.ui-border-element:before,.title>.ui-border-element:after {
+    content:'';
+    position:absolute
+}
+.title:after {
+    border-bottom:2px solid #36bae8;
+    left:51%;
+    right:51%;
+    bottom:0;
+    -webkit-transition-property:all;
+    -moz-transition-property:all;
+    -o-transition-property:all;
+    transition-property:all;
+    -webkit-transition-timing-function:cubic-bezier(0, 0.98, 0.51, 0.93);
+    -moz-transition-timing-function:cubic-bezier(0, 0.98, 0.51, 0.93);
+    -o-transition-timing-function:cubic-bezier(0, 0.98, 0.51, 0.93);
+    transition-timing-function:cubic-bezier(0, 0.98, 0.51, 0.93);
+    -webkit-transition-duration:500ms;
+    -moz-transition-duration:500ms;
+    -o-transition-duration:500ms;
+    transition-duration:500ms;
+    -webkit-transition-delay:0s;
+    -moz-transition-delay:0s;
+    -o-transition-delay:0s;
+    transition-delay:0s
+}
+.title:hover:not(.cur):after {
+    left:0%;
+    right:0%;
+}
+.title:not(:hover):after {
+    -webkit-transition-delay:0s;
+    -moz-transition-delay:0s;
+    -o-transition-delay:0s;
+    transition-delay:0s
+}
+.cur{
+    color: #36bae8;
+    border-bottom: 2px solid #36bae8;
+    height: 43px;
+}
